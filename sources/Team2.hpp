@@ -19,19 +19,14 @@ class Team2 : public Team{
         Team2(Character* leader);
         
         Team2();
-        //~Team();
 
         void print();
-
     
         Character* findClosestAliveFighter(const Team &team, const Character *leader) const;
 
         void attack(Team* other);
 
-        Character* getClosest(Team *enemy_team);
 
 
 };
-
-
 #endif

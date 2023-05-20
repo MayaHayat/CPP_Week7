@@ -5,8 +5,7 @@
 using namespace std;
 
 Point :: Point(){
-    this ->x_c = 0;
-    this ->y_c = 0;
+    
 }
 
 Point :: Point(double x_c, double y_c){

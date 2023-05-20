@@ -17,6 +17,7 @@ class Point{
 
         Point(double x_c, double y_c);
 
+
         double getX() const;
 
         double getY() const;
@@ -27,9 +28,6 @@ class Point{
 
         string print();
 
-        // string to_string() ;
-
-        //bool operator==(Point& other);
         
 };
 

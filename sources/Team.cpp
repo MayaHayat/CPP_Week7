@@ -3,10 +3,7 @@
 #include "Team.hpp"
 
 
-
 Team :: Team(){
-
-    this ->leader = new Character();
 }
 
 Team :: Team(Character* leader) {
@@ -16,17 +13,9 @@ Team :: Team(Character* leader) {
     }
     this->leader = leader;
     this -> members.push_back(leader);
-    //leader -> inTeam();
     leader->inTeam();
 }
 
-
-
-
-Team::~Team(){
-    for (Character *fighter : members)
-        delete fighter;
-}
     
 void Team :: add(Character* newChr){
     if (this ->members.size() == 10){
@@ -36,11 +25,8 @@ void Team :: add(Character* newChr){
         string name = newChr ->getName();
         throw std::runtime_error (name + " is already in another team");
     }
-    //cout << members.size()  << " BEFORE "<< endl;
     this-> members.push_back(newChr);
-    this -> numberMembers += 1;
     newChr -> inTeam();
-    //cout << members.size() << " AFTER " << endl;
 }
 
 
@@ -81,8 +67,7 @@ void  Team :: attack(Team* other){
             else{
                 cboy->reload();
             }           
-        }
-        
+        } 
     }
     for (Character* fighter : this->getFighters()){
         if(other->stillAlive() == 0){
@@ -99,11 +84,8 @@ void  Team :: attack(Team* other){
             else{
                 nja->move(toAttack);
             }           
-        }
-        
-    }
-
-    
+        } 
+    } 
 
 }
 
@@ -124,12 +106,14 @@ Character* Team::findClosestAliveFighter(const Team &team, const Character *lead
 }
 
 int Team :: stillAlive(){
+    int count = 0;
     for (size_t i = 0; i < members.size(); i++){
-        if (members.at(i)->isAlive() == false){
-            members.erase(members.begin() + static_cast<std::vector<Character>::difference_type>(i));
+        if (members.at(i)->isAlive()){
+            count++;
+            //members.erase(members.begin() + static_cast<std::vector<Character>::difference_type>(i));
         }
     }
-    return this -> members.size();
+    return count;
 }
 
 void Team :: print(){
@@ -148,3 +132,6 @@ void Team :: print(){
 void Team :: addToMembers(Character* newChar){
     this ->members.push_back(newChar);
 }
+
+
+

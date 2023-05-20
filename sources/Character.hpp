@@ -21,21 +21,14 @@ class Character{
         string type;
 
     public:
-        
-        Character(string name, Point location, int alivePoints);
 
-        Character(string name, Point location);
+        Character(string name, Point& location, int alivePoints);
 
         Character();
 
-        Character(Character *other);
-
         virtual ~Character() = default;
 
-
         int getAlivePoints()const;
-
-        void setAlivePoints(int toAdd);
 
         bool isAlive();
 
@@ -53,7 +46,6 @@ class Character{
 
         bool isTaken();
 
-        // string to_string();
 
         string print();
 

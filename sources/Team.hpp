@@ -15,9 +15,6 @@ namespace ariel{};
 class Team{
 
     private:
-        int numberMembers;
-
-        static const int maxMembers = 10;
 
         Character *leader;
 
@@ -40,11 +37,10 @@ class Team{
         Character* findClosestAliveFighter(const Team &team, const Character *leader) const;
 
 
-
-        Team (Team&) = delete; // Copy Constructor.
-        Team (Team&&) noexcept = delete; // Move Constructor.
-        Team& operator = (const Team&) = delete; // Copy assignment operator.
-        Team& operator = (Team&&) noexcept = delete; // Move assignment operator.
+        Team (Team&) = delete; 
+        Team (Team&&) noexcept = delete;
+        Team& operator = (const Team&) = delete; 
+        Team& operator = (Team&&) noexcept = delete;
     
 
     // -------------------- REQUESTED FUNCTIONS ----------------------
@@ -54,7 +50,11 @@ class Team{
 
         Team();
         
-        virtual ~Team();
+        virtual ~Team(){
+        for(size_t i=0 ; i<members.size() ;i++){
+            delete members.at(i);
+            }
+        }
     
         void add(Character* newChr);
 

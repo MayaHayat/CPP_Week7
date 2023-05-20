@@ -220,6 +220,7 @@ TEST_SUITE("Battle related methods") {
                 cowboy->shoot(target);
             }
         };
+
         shoot(6);
         CHECK_FALSE(cowboy->hasboolets());
         CHECK_NOTHROW(cowboy->shoot(target)); // This should not damage the target
@@ -228,7 +229,6 @@ TEST_SUITE("Battle related methods") {
         shoot(2);
         cowboy->reload();
         shoot(6);
-
         CHECK(target->isAlive()); // Target should still be alive with 10 hit points if the cowboys damage is 10
         shoot(1);
         CHECK(target->isAlive()); // Reloading when the magazine isn't empty shouldn't result in more than 6 bullets, the previous shoot should have no effect
@@ -277,7 +277,7 @@ TEST_SUITE("Battle related methods") {
         OldNinja old{"Bob", Point{random_float(0) + 15, random_float(0) + 15}};
         TrainedNinja trained{"Kung fu panda", Point{random_float(0) + 15, random_float(0) + 15}};
         YoungNinja young{"Karate kid", Point{random_float(0) + 15, random_float(0) + 15}};
-        Cowboy cowboy{"Clint", Point{0, 0}};
+        Cowboy cowboy{"Clint", Point{0, 0}}; 
 
         double old_distance = old.distance(&cowboy);
         double young_distance = young.distance(&cowboy);
@@ -455,32 +455,28 @@ TEST_SUITE("Battle simulations") {
         auto old_ninja = create_oninja(2, 2);
         auto young_ninja2 = create_yninja(3, 3);
         auto cowboy = create_cowboy(-6, -6);
-        auto cowboy2 = create_cowboy(-7, -7);
-        auto cowboy3 = create_cowboy(-8, -8);
+	    auto cowboy2 = create_cowboy(-7, -7);
+	    auto cowboy3 = create_cowboy(-8, -8);
         Team team2{young_ninja};
         team2.add(trained_ninja);
         team2.add(old_ninja);
         team2.add(young_ninja2);
         team2.add(cowboy);
-        team2.add(cowboy2);
-        team2.add(cowboy3);
+	    team2.add(cowboy2);
+	    team2.add(cowboy3);
 
         CHECK_EQ(team2.stillAlive(), 7);
- 
+
         multi_attack(2, team, team2);
         CHECK_FALSE(young_ninja->isAlive()); // Young ninja should be dead
         CHECK((trained_ninja->isAlive() && old_ninja->isAlive() &&
                young_ninja2->isAlive())); // Everyone else should still be alive
 
         team.attack(&team2);
-
-
         CHECK((!trained_ninja->isAlive() && old_ninja->isAlive() &&
                young_ninja2->isAlive())); // No one should die in the attack
 
         multi_attack(2, team, team2);
-
-
         CHECK_FALSE(trained_ninja->isAlive()); // Trained ninja should be dead
         CHECK((!old_ninja->isAlive() && young_ninja2->isAlive()));
 
@@ -492,6 +488,7 @@ TEST_SUITE("Battle simulations") {
         CHECK_NOTHROW(team.attack(
                 &team2)); // The entire enemy team will be dead before every cowboy shoots, the attack should stop and not throw an exception
         CHECK_FALSE(young_ninja2->isAlive()); // Young ninja should be dead
+
         CHECK_THROWS_AS(team.attack(&team2), std::runtime_error); // Attacking a dead team should throw an exception
     }
 
@@ -521,14 +518,11 @@ TEST_SUITE("Battle simulations") {
 
         multi_attack(4, team1, team2);
 
-
         // The captain of team2 is the closest enemy to the captain of team1, and therefore should be dead.
         CHECK((!team2_c2->isAlive() && team2_c1->isAlive() && team2_c3->isAlive() && team2_c4->isAlive()));
 
         // At this point, the captain should be team2_c3; hence, the next enemy to be attacked by team2 should team_c3.
         multi_attack(6, team2, team1);
-
-        cout << team_c3->getAlivePoints() << " " << team_c1->getAlivePoints() << " "<< team_c2->getAlivePoints() << endl;
         CHECK((!team_c3->isAlive() && team_c1->isAlive() && team_c2->isAlive()));
 
 
@@ -541,18 +535,13 @@ TEST_SUITE("Battle simulations") {
         CHECK((!team2_c2->isAlive() && team2_c1->isAlive() && !team2_c3->isAlive() && team2_c4->isAlive()));
 
         //Next captain should be team2_c1, hence, the next enemy to be attacked by team2 should team_cc.
-        
-        
         multi_attack(7, team2, team1);
-
         CHECK((!team_c3->isAlive() && team_c1->isAlive() && !team_c2->isAlive()));
 
         while (team1.stillAlive() && team2.stillAlive()) {
             team1.attack(&team2);
             team2.attack(&team1);
         }
-
-     
     }
 
 

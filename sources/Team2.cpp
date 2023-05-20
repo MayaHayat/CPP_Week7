@@ -13,11 +13,7 @@ Team2 :: Team2(Character* leader){
     leader->inTeam();
 }
 
-Team2 :: Team2() : Team(){
-    
-}
-
-
+Team2 :: Team2() : Team(){}
 
 void  Team2 :: attack(Team* other){
     if (other == nullptr){
@@ -60,10 +56,7 @@ void  Team2 :: attack(Team* other){
                 cboy->reload();
             }           
         }
-        
-        
     }
-    
 
 }
 
@@ -94,4 +87,3 @@ void Team2 :: print(){
     cout <<" The leader is " <<this->getLeader()->print() << endl;
 
 }
-

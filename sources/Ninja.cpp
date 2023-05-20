@@ -5,8 +5,6 @@
 Ninja :: Ninja (string name, Point location,int alivePoints, int speed): Character(name, location, alivePoints){
     this ->speed  = speed;
     this->setType("Ninja");
-
-    
 }
 
 void Ninja :: move(Character* other){
