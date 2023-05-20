@@ -4,7 +4,7 @@
 
 Ninja :: Ninja (string name, Point location,int alivePoints, int speed): Character(name, location, alivePoints){
     this ->speed  = speed;
-    this->type = "Ninja";
+    this->setType("Ninja");
 
     
 }
@@ -14,7 +14,7 @@ void Ninja :: move(Character* other){
 }
 
 void Ninja :: slash(Character* other){
-    if (this ->id == other->id){
+    if (this == other){
         throw std::runtime_error ("You can't slush yourself");
     }
     if (this ->isAlive() == false){

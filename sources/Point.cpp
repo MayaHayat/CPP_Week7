@@ -22,11 +22,11 @@ double Point :: getY() const{
     return this -> y_c;
 }
 
-double Point :: distance(const Point other)const{
+double Point :: distance(Point other)const{
     return (sqrt(pow(this ->x_c - other.getX(), 2) + pow(this ->y_c - other.getY(),2)));
 }
 
-Point Point :: moveTowards(const Point origin, const Point destination, double distance){
+Point Point :: moveTowards(Point origin, Point destination, double distance){
     if (distance < 0){
         throw std::invalid_argument("Distance must be > 0");
     }

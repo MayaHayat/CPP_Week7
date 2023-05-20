@@ -3,11 +3,11 @@
 
 Cowboy :: Cowboy(string name, Point location) : Character(name, location, 110){
     this ->numBullets = 6;
-    this->type = "Cowboy";
+    this->setType("Cowboy");
 }
 
 void Cowboy :: shoot(Character* other){
-    if (this ->id == other->id){
+    if (this == other){
         throw std::runtime_error ("You can't shoot yourself");
     }
     if (this ->isAlive() == false){

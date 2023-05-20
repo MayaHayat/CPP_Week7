@@ -43,6 +43,15 @@ void Team :: add(Character* newChr){
     //cout << members.size() << " AFTER " << endl;
 }
 
+
+void Team :: setLeader(Character *leader){
+    this ->leader = leader;
+}
+
+Character* Team :: getLeader(){
+    return this ->leader;
+}
+
 void  Team :: attack(Team* other){
     if (other == nullptr){
         throw std::invalid_argument("No team was given to attack");
@@ -64,7 +73,7 @@ void  Team :: attack(Team* other){
         if (toAttack->isAlive() == false){
             toAttack = findClosestAliveFighter(*other, this->leader);
         }
-        if(fighter->type == "Cowboy" && fighter->isAlive()){
+        if(fighter->getType() == "Cowboy" && fighter->isAlive()){
             Cowboy* cboy = static_cast<Cowboy *>(fighter);
             if(cboy->hasboolets()){
                 cboy->shoot(toAttack);
@@ -82,7 +91,7 @@ void  Team :: attack(Team* other){
         if (toAttack->isAlive() == false){
             toAttack = findClosestAliveFighter(*other, this->leader);
         }
-        if(fighter->type == "Ninja" && fighter->isAlive()){
+        if(fighter->getType() == "Ninja" && fighter->isAlive()){
             Ninja* nja = static_cast<Ninja *>(fighter);
             if(nja->distance(toAttack) <= 1){
                 nja->slash(toAttack);
@@ -125,11 +134,11 @@ int Team :: stillAlive(){
 
 void Team :: print(){
     for (size_t i = 0; i < members.size(); ++i) {
-        if(members.at(i)->type == "Cowboy")
+        if(members.at(i)->getType() == "Cowboy")
             cout << members.at(i)->print() << endl;
     }
     for (size_t i = 0; i < members.size(); ++i) {
-        if(members.at(i)->type == "Ninja")
+        if(members.at(i)->getType() == "Ninja")
             cout << members.at(i)->print() << endl;
     }
 

@@ -16,18 +16,12 @@ class Character{
 
         string name;
 
-        static int nextId;
-
         bool isInTeam;
-
-
-
-    public:
-        int id;
 
         string type;
 
-
+    public:
+        
         Character(string name, Point location, int alivePoints);
 
         Character(string name, Point location);
@@ -35,6 +29,8 @@ class Character{
         Character();
 
         Character(Character *other);
+
+        virtual ~Character() = default;
 
 
         int getAlivePoints()const;
@@ -60,6 +56,17 @@ class Character{
         // string to_string();
 
         string print();
+
+
+        void setType(string type);
+
+        string getType();
+
+
+        Character (Character&); // Copy Constructor.
+        Character(Character&& ) noexcept; // Move Constructor.
+        Character& operator = (const Character&); // Copy assignment operator.
+        Character& operator = (Character&&) noexcept; // Move assignment operator.
 
 
 };

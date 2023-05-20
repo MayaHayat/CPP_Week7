@@ -4,8 +4,6 @@
 
 using namespace std;
 
-int Character::nextId = 1;
-
 Character :: Character (){
     this ->location = Point(0,0);
     this ->name = "Doesn't matter";
@@ -13,14 +11,14 @@ Character :: Character (){
     this ->isInTeam = false;
 }
 
-Character :: Character(string name, Point location, int alivePoints): location(location), id(nextId++){
+Character :: Character(string name, Point location, int alivePoints): location(location){
     this -> name = name;
     this ->alivePoints = alivePoints;
     this ->isInTeam = false;
     this -> type = "character";
 }
 
-Character :: Character(string name, Point location): location(location), id(nextId++){
+Character :: Character(string name, Point location): location(location){
     this -> name = name;
     this ->isInTeam = false;
 }
@@ -79,6 +77,15 @@ void Character :: inTeam(){
 
 bool Character :: isTaken(){
     return isInTeam;
+}
+
+
+void Character :: setType(string type){
+    this ->type = type;
+}
+
+string Character :: getType(){
+    return this-> type;
 }
 
 

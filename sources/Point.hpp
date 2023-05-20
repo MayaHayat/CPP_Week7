@@ -21,9 +21,9 @@ class Point{
 
         double getY() const;
 
-        double distance(const Point other) const;
+        double distance(Point other) const;
 
-        static Point moveTowards(const Point origin, const Point destination, double distance);
+        static Point moveTowards(Point origin, Point destination, double distance);
 
         string print();
 

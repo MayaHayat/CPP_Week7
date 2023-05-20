@@ -519,29 +519,14 @@ TEST_SUITE("Battle simulations") {
         team2.add(team2_c3);
         team2.add(team2_c4);
 
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-        team1.print();
-
-
         multi_attack(4, team1, team2);
 
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-        team1.print();
 
         // The captain of team2 is the closest enemy to the captain of team1, and therefore should be dead.
         CHECK((!team2_c2->isAlive() && team2_c1->isAlive() && team2_c3->isAlive() && team2_c4->isAlive()));
 
         // At this point, the captain should be team2_c3; hence, the next enemy to be attacked by team2 should team_c3.
         multi_attack(6, team2, team1);
-
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-        team1.print();
 
         cout << team_c3->getAlivePoints() << " " << team_c1->getAlivePoints() << " "<< team_c2->getAlivePoints() << endl;
         CHECK((!team_c3->isAlive() && team_c1->isAlive() && team_c2->isAlive()));
@@ -553,12 +538,6 @@ TEST_SUITE("Battle simulations") {
             team_c1->shoot(team2_c3);
         }
 
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-        team1.print();
-
-
         CHECK((!team2_c2->isAlive() && team2_c1->isAlive() && !team2_c3->isAlive() && team2_c4->isAlive()));
 
         //Next captain should be team2_c1, hence, the next enemy to be attacked by team2 should team_cc.
@@ -566,13 +545,6 @@ TEST_SUITE("Battle simulations") {
         
         multi_attack(7, team2, team1);
 
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-
-        team1.print();
-
-        cout << team_c3->getAlivePoints() << " " << team_c1->getAlivePoints() << " "<< team_c2->getAlivePoints() << endl;
         CHECK((!team_c3->isAlive() && team_c1->isAlive() && !team_c2->isAlive()));
 
         while (team1.stillAlive() && team2.stillAlive()) {
@@ -580,11 +552,7 @@ TEST_SUITE("Battle simulations") {
             team2.attack(&team1);
         }
 
-        cout << "--------------" << endl;
-        team2.print();
-        cout << "================" << endl;
-        team1.print();
-
+     
     }
 
 

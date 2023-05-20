@@ -8,7 +8,7 @@ Team2 :: Team2(Character* leader){
         string name = leader ->getName();
         throw std::runtime_error (name + " is already in another team");
     }
-    this ->leader = leader;
+    this ->setLeader(leader);
     this ->addToMembers(leader);
     leader->inTeam();
 }
@@ -26,22 +26,22 @@ void  Team2 :: attack(Team* other){
     if (other->stillAlive() == 0){
         throw std::runtime_error("All teammates are already dead");
     }
-    if (this ->leader->isAlive() == false){
-        this->leader = findClosestAliveFighter(*this, this->leader);
+    if (this ->getLeader()->isAlive() == false){
+        this->setLeader(findClosestAliveFighter(*this, getLeader()));
     }
     if (other->stillAlive() == 0){
         return;
     }
-    Character* toAttack = findClosestAliveFighter(*other, this->leader);
+    Character* toAttack = findClosestAliveFighter(*other, getLeader());
     for (Character* fighter : this->getFighters()){
         if(other->stillAlive() == 0){
             break;
         }
         if (toAttack->isAlive() == false){
-            toAttack = findClosestAliveFighter(*other, this->leader);
+            toAttack = findClosestAliveFighter(*other, getLeader());
         }
 
-        if(fighter->type == "Ninja" && fighter->isAlive()){
+        if(fighter->getType() == "Ninja" && fighter->isAlive()){
             Ninja* nja = static_cast<Ninja *>(fighter);
             if(nja->distance(toAttack) <= 1){
                 nja->slash(toAttack);
@@ -51,7 +51,7 @@ void  Team2 :: attack(Team* other){
             }           
         }
 
-        if(fighter->type == "Cowboy" && fighter->isAlive()){
+        if(fighter->getType() == "Cowboy" && fighter->isAlive()){
             Cowboy* cboy = static_cast<Cowboy *>(fighter);
             if(cboy->hasboolets()){
                 cboy->shoot(toAttack);
@@ -84,14 +84,14 @@ Character* Team2 ::findClosestAliveFighter(const Team &team, const Character *le
 
 void Team2 :: print(){
     for (size_t i = 0; i < this->getFighters().size(); ++i) {
-        if(this->getFighters().at(i)->type == "Cowboy")
+        if(this->getFighters().at(i)->getType() == "Cowboy")
             cout << this->getFighters().at(i)->print() << endl;
 
-        if(this->getFighters().at(i)->type == "Ninja")
+        if(this->getFighters().at(i)->getType() == "Ninja")
             cout << this->getFighters().at(i)->print() << endl;
     }
     
-    cout <<" The leader is " <<this->leader->print() << endl;
+    cout <<" The leader is " <<this->getLeader()->print() << endl;
 
 }
 
