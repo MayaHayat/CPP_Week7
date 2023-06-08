@@ -13,9 +13,9 @@ class Point{
         double y_c;
 
     public:
-        Point();
+        Point(){}
 
-        Point(double x_c, double y_c);
+        Point(double x_c, double y_c) :x_c(x_c), y_c(y_c){}
 
 
         double getX() const;

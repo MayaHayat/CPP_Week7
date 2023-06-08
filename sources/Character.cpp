@@ -4,15 +4,6 @@
 
 using namespace std;
 
-Character :: Character (){
-}
-
-Character :: Character(string name, Point& location, int alivePoints): location(location){
-    this -> name = name;
-    this ->alivePoints = alivePoints;
-    this ->isInTeam = false;
-    this -> type = "character";
-}
 
 bool Character :: isAlive(){
     return this ->alivePoints > 0;

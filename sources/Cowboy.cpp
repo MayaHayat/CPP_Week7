@@ -1,10 +1,7 @@
 #include <iostream>
 #include "Cowboy.hpp"
 
-Cowboy :: Cowboy(string name, Point location) : Character(name, location, 110){
-    this ->numBullets = 6;
-    this->setType("Cowboy");
-}
+
 
 void Cowboy :: shoot(Character* other){
     if (this == other){

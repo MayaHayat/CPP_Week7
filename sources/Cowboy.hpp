@@ -13,7 +13,9 @@ class Cowboy : public Character{
        int numBullets; 
 
     public:
-        Cowboy(string name, Point location);
+        Cowboy(string name, Point location) : Character(name, location, 110), numBullets(6){
+            this->setType("Cowboy");
+        }
         
         void shoot(Character* other);
 

@@ -13,6 +13,8 @@
 using namespace std;
 
 #include "sources/Team.hpp" //no need for other includes
+#include "sources/Team2.hpp"
+#include "sources/SmartTeam.hpp"
 
 using namespace ariel;
 
@@ -47,6 +49,16 @@ int main() {
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
      else cout << "winner is team_B" << endl;
 
-     return 0; // no memory issues. Team should free the memory of its members. both a and b teams are on the stack. 
+
+   Cowboy *smartcowboy = new Cowboy("smartcowboy", a);
+   SmartTeam steam(smartcowboy);
+
+   steam.add(new TrainedNinja("1", Point(12,81)));
+   steam.add(new YoungNinja("2", Point(19,1)));
+   steam.add(new OldNinja("3", Point(2,18)));
+
+   steam.print();
+
+   return 0; // no memory issues. Team should free the memory of its members. both a and b teams are on the stack. 
 
 }

@@ -4,14 +4,7 @@
 
 using namespace std;
 
-Point :: Point(){
-    
-}
 
-Point :: Point(double x_c, double y_c){
-    this -> x_c = x_c;
-    this -> y_c = y_c;
-}
 
 double Point :: getX() const{
     return this -> x_c;

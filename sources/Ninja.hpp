@@ -14,7 +14,9 @@ class Ninja : public Character{
 
     public:
 
-        Ninja(string name, Point location, int alivePoints, int speed);
+        Ninja(string name, Point location, int alivePoints, int speed) : Character(name, location, alivePoints), speed(speed){
+            this->setType("Ninja");
+        }
 
         void move(Character* other);
 

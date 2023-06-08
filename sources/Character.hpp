@@ -22,9 +22,9 @@ class Character{
 
     public:
 
-        Character(string name, Point& location, int alivePoints);
+        Character(string name, Point& location, int alivePoints): name(name), location(location),alivePoints(alivePoints),isInTeam(false), type("Character"){}
 
-        Character();
+        Character(){}
 
         virtual ~Character() = default;
 

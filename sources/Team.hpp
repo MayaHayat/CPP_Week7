@@ -58,7 +58,7 @@ class Team{
     
         void add(Character* newChr);
 
-        void attack(Team* other);
+        virtual void attack(Team* other);
 
         int stillAlive();
 
